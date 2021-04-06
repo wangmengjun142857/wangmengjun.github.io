@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>title-测试测试</title>
+      <link href="/2021/04/06/%E6%B5%8B%E8%AF%95%E6%B5%8B%E8%AF%95/"/>
+      <url>/2021/04/06/%E6%B5%8B%E8%AF%95%E6%B5%8B%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>9月29日开始了第十二节课，主要讲了<a href="https://www.linuxprobe.com/chapter-10.html" target="_blank" rel="noopener">第十章：使用Apache服务部署静态网站</a>，讲述了 <code>网站服务程序</code> <code>SElinux 安全子系统</code> <code>个人用户主页功能</code> <code>虚拟主机功能</code>（基于IP地址，基于主机域名，基于端口号）。 <a id="more"></a></p></blockquote><blockquote><p><code>Apache</code> 特点：</p><blockquote><p>支持多计算机平台<br>配置文件简单，易操作<br>支持实时监控服务器状态和定制服务器日志。<br>稳定，安全，效率，功能模块化</p></blockquote></blockquote><blockquote><p><code>配置文件</code></p><blockquote><p>主配置文件：保存最重要的配置参数，一般路径：/etc/服务名称/服务名称.conf<br>一般配置文件：保存的其他配置文件</p></blockquote></blockquote><blockquote><p><code>SELinux</code> (security-Enhanced Linux)：对服务程序的功能进行限制（SELinux 域限制可以确认服务程序做不了出格的事情）；对文件资源的访问限制（SELinux 安全上下文确保文件资源只能被其所属的服务程序进行访问）。SELinux 服务有三种配置模式，具体如下：</p><blockquote><p>enforcing：强制启用安全策略模式，将拦截服务的不合法请求。<br>permissive：遇到服务越权访问时，只发出警告而不强制拦截。<br>disabled：对于越权的行为不警告也不拦截。</p></blockquote></blockquote><blockquote><p>selinux 配置文件在 <code>/etc/selinux/config</code>，使用 <code>getenforce</code>可以查看当前模式；setenforece[0|1]可以修改selinux 当前的运行模式，0为禁用，1为启动，这种修改只是临时生效，重启后失效。<br><code>semanage</code>命令用于管理 selinux 的策略，格式为 “semanage [选项] [文件]” ，常用到的参数及其功能如下：</p><blockquote><p>-l 参数用于查询；<br>-a 参数用于添加；<br>-m 参数用于修改；<br>-d 参数用于删除</p></blockquote></blockquote><blockquote><p>一种排错思路：若有报错，怀疑为 selinux 问题的话，可先将selinux 关闭再做测试。</p></blockquote><p>复习：基于端口号</p><p>预习：<br>10.4<br><a href="https://www.linuxprobe.com/chapter-11.html" target="_blank" rel="noopener">第十一章： 使用Vsftpd服务传输文件</a><br>10.5<br><a href="https://www.linuxprobe.com/chapter-12.html" target="_blank" rel="noopener">第十二章： 使用Samba或NFS实现文件共享</a><br><a href="https://www.linuxprobe.com/chapter-14.html" target="_blank" rel="noopener">第十四章： 使用DHCP动态管理主机地址</a><br>10.6<br><a href="https://www.linuxprobe.com/chapter-13.html" target="_blank" rel="noopener">第十三章： 使用Bind提供域名解析服务</a>    </p><p>最后附上几张笔记：<br><img src="/img/9.29-1.jpg" alt="9.29笔记" title="9.29笔记"><br><img src="/img/9.29-2.jpg" alt="9.29笔记" title="9.29笔记"><br><img src="/img/9.29-3.jpg" alt="9.29笔记" title="9.29笔记"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 《Linux就该这么学》 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tdsql 最小化安装部署</title>
       <link href="/2021/04/06/tdsql%20%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"/>
       <url>/2021/04/06/tdsql%20%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</url>
