@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="王孟俊">
+
+
+
+<meta name="description" content="9月8号开始了第三节课，讲述了第二章：新手必须掌握的Linux命令中的大部分内容。涉及到的命令如下：reboot poweroff wget ps top pidof kill killall ifconfig uname uptime free who last history sosreport pwd cd ls cat more head tail tr wc stat cut diff">
+<meta name="keywords" content="《Linux就该这么学》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux就该这么学-第三节课">
+<meta property="og:url" content="http://wangmj.cn/2019/09/09/linux就该这么学-第三节课/index.html">
+<meta property="og:site_name" content="王孟俊">
+<meta property="og:description" content="9月8号开始了第三节课，讲述了第二章：新手必须掌握的Linux命令中的大部分内容。涉及到的命令如下：reboot poweroff wget ps top pidof kill killall ifconfig uname uptime free who last history sosreport pwd cd ls cat more head tail tr wc stat cut diff">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wangmj.cn/img/top.png">
+<meta property="og:image" content="http://wangmj.cn/img/ifconfig.png">
+<meta property="og:image" content="http://wangmj.cn/img/uname.png">
+<meta property="og:image" content="http://wangmj.cn/img/who.png">
+<meta property="og:image" content="http://wangmj.cn/img/9.8-1.jpg">
+<meta property="og:image" content="http://wangmj.cn/img/9.8-2.jpg">
+<meta property="og:image" content="http://wangmj.cn/img/9.8-3.jpg">
+<meta property="og:image" content="http://wangmj.cn/img/9.8-4.jpg">
+<meta property="og:updated_time" content="2019-09-09T15:43:51.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux就该这么学-第三节课">
+<meta name="twitter:description" content="9月8号开始了第三节课，讲述了第二章：新手必须掌握的Linux命令中的大部分内容。涉及到的命令如下：reboot poweroff wget ps top pidof kill killall ifconfig uname uptime free who last history sosreport pwd cd ls cat more head tail tr wc stat cut diff">
+<meta name="twitter:image" content="http://wangmj.cn/img/top.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="王孟俊" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/redhat.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>linux就该这么学-第三节课 | 王孟俊</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?25a4d130491145e380b955eae1845b2";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head></html>
+<body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/click.js"></script>
+
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/luxin.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">王孟俊</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">独立之精神，自由之思想。</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:&#50;&#50;&#51;&#56;&#55;&#56;&#50;&#53;&#50;&#53;&#64;&#113;&#113;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/wangmengjun142857" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="https://www.zhihu.com/people/wang-meng-jun-75/activities" title="知乎"></a>
+                            
+                                <a class="fa 博客园" href="https://www.cnblogs.com/wangmengjun/" title="博客园"></a>
+                            
+                                <a class="fa 网易云音乐" href="https://music.163.com/#/user/home?id=322356942" title="网易云音乐"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HCNA/">HCNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tdsql/">tdsql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Linux就该这么学》/">《Linux就该这么学》</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/娱乐至死/">娱乐至死</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/愿你的生活既有善良，又有锋芒/">愿你的生活既有善良，又有锋芒</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/断舍离/">断舍离</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网站/">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/腾讯云/">腾讯云</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://wangmj.cn">blog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/wangmengjun142857">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Learning</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">王孟俊</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/luxin.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">王孟俊</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">独立之精神，自由之思想。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:&#50;&#50;&#51;&#56;&#55;&#56;&#50;&#53;&#50;&#53;&#64;&#113;&#113;&#46;&#99;&#111;&#109;" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/wangmengjun142857" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="https://www.zhihu.com/people/wang-meng-jun-75/activities" title="知乎"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="https://www.cnblogs.com/wangmengjun/" title="博客园"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="https://music.163.com/#/user/home?id=322356942" title="网易云音乐"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-linux就该这么学-第三节课" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/09/linux就该这么学-第三节课/" class="article-date">
+      <time datetime="2019-09-09T11:50:19.000Z" itemprop="datePublished">2019-09-09</time>
+</a>
+
+ 
+    <a href="/2019/09/09/linux就该这么学-第三节课/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+        
+            <span class="disqus-comment-count" data-disqus-identifier="2019/09/09/linux就该这么学-第三节课/"></span>
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux就该这么学-第三节课
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Linux就该这么学》/">《Linux就该这么学》</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>9月8号开始了第三节课，讲述了<a href="https://www.linuxprobe.com/chapter-02.html" target="_blank" rel="noopener">第二章：新手必须掌握的Linux命令</a>中的大部分内容。涉及到的命令如下：<code>reboot</code> <code>poweroff</code> <code>wget</code> <code>ps</code> <code>top</code> <code>pidof</code> <code>kill</code> <code>killall</code> <code>ifconfig</code> <code>uname</code> <code>uptime</code> <code>free</code> <code>who</code> <code>last</code> <code>history</code> <code>sosreport</code> <code>pwd</code> <code>cd</code> <code>ls</code> <code>cat</code> <code>more</code> <code>head</code> <code>tail</code> <code>tr</code> <code>wc</code> <code>stat</code> <code>cut</code> <code>diff</code> <code>touch</code> <code>mkdir</code> <code>cp</code> <code>mv</code> <code>rm</code> <code>dd</code> <code>file</code> 等命令。 <a id="more"></a></p>
+</blockquote>
+<blockquote>
+<p><code>reboot</code> 重启</p>
+</blockquote>
+<blockquote>
+<p><code>poweroff</code> 关机</p>
+</blockquote>
+<blockquote>
+<p><code>wget</code>: 用于在终端中下载网络文件， 格式为 “wget [参数] 下载地址”,<code>wget</code> 命令的参数以及作用如下：</p>
+<blockquote>
+<p><code>-b</code>  后台下载模式<br><code>-P</code>  下载到指定目录<br><code>-t</code>  最大尝试次数<br><code>-c</code>  断点续传<br><code>-p</code>  下载页面内所有资源，包括图片、视频等。<br><code>-r</code>  递归下载</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>ps</code>:用于查看系统中的进程状态，格式为 “ps [参数]”，ps 命令的参数以及作用如下：</p>
+<blockquote>
+<p><code>-a</code> 显示所有进程（包括其他用户的进程）<br><code>-u</code> 用户以及其他详细信息<br><code>-x</code> 显示没有控制终端的进程<br>一般三者结合管道符使用：<code>ps aux | grep 进程名</code> <br><br>linux系统中有 <strong>5</strong> 种常见的进程状态,分别如下：<br>R（running,运行）：进程正在运行或在运行队列中等待。<br>S（sleeping，中断）：进程处于休眠中，当某个条件形成后或者接收到信号时，则脱离该状态。<br>D（disk sleep,uninterruptible sleep，不可中断）：进程不响应系统异步信号，即使用kill命令也不能将其中断。<br>Z（zombie，僵死）：进程已经终止，但进程描述符依然存在，直到父进程调用 <code>wait4()</code> 系统函数后将进程释放。<br>T (stopped)：进程收到停止信号后停止运行。 </p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>top</code>:用于动态地监视进程活动与系统负载等信息，其格式为 <code>top</code>。如图：<img src="/img/top.png" alt="top" title="top"><br><code>top</code> 命令执行结果的前五行为系统整体的统计信息，其所代表的含义如下。</p>
+<ul>
+<li>第一行：系统时间、运行时间、登陆终端数、系统负载（三个数值分别为1分钟、5分钟、15分钟内的平均值，数值越小意味着负载越低）。</li>
+<li>第二行：进程总数、运行中的进程数、睡眠中的进程数、停止的进程数、僵死的进程数。</li>
+<li>第三行：用户占用资源百分比、系统内核占用资源百分比、改变过优先级的进程资源百分比、空闲的资源百分比等。</li>
+<li>第四行：物理内存总量、内存使用量、内存空闲量、作为内核缓存的内存量。</li>
+<li>第五行：虚拟内存总量、虚拟内存使用量、虚拟内存空闲量、已被提前加载的内存量。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>pidof</code>:用于查询某个指定服务进程的PID值，格式为 “pidof [参数][服务名称]”。<br><code>kill</code>:用于终止某个指定PID的服务进程（可使用<code>pidof</code>查询），格式为 “kill [参数][进程PID]”<br><code>killall</code>:用于终止某个指定名称的服务所对应的全部进程（不止一个进程），格式为 “killall [参数][服务名称]”</p>
+</blockquote>
+<blockquote>
+<p><code>ifconfig</code>:用于获取网卡配置与网络状态等信息，格式为 “ifconfig [网络设备] [参数]”。主要查看的是 网卡名称、inet后面的IP地址、ether后面的mac地址、以及RX、TX的接收数据包与发送数据包的个数及累计流量。如图: <img src="/img/ifconfig.png" alt="ifconfig" title="ifconfig"></p>
+</blockquote>
+<blockquote>
+<p><code>uname</code>:用于查看系统内核与系统版本等信息，格式为 “uname [-a]”。可查看当前系统的内核名称、主机名、内核发行版本、节点名、系统时间、硬件名称、硬件平台、处理器类型以及操作系统名称等信息。若要查看当前系统版本的详细信息，可使用 <code>cat /etc/redhat-release</code>。如图：<img src="/img/uname.png" alt="uname" title="uname"></p>
+</blockquote>
+<blockquote>
+<p><code>uptime</code>:用于查看系统的负载信息，格式为 uptime。即为简化版的 <code>top</code>。</p>
+</blockquote>
+<blockquote>
+<p><code>free</code>:用于显示当前系统中内存的使用量信息，格式为 “free [-h]”。</p>
+</blockquote>
+<blockquote>
+<p><code>who</code>:用于查看当前登入主机的用户终端信息，格式为 “who [参数]”，若要注销掉其他终端，可查看当前sshd进程的所有PID，根据IP地址或者pts kill掉即可，前提是你使用的需要是管理员账户。如图:<img src="/img/who.png" alt="who" title="who"></p>
+</blockquote>
+<blockquote>
+<p><code>last</code>:用于查看所有系统的登录记录，格式为： “last [参数]”。但日志文件可以更改，仅作参考。</p>
+</blockquote>
+<blockquote>
+<p><code>history</code>:用于显示历史执行过的命令，格式为 “history [-c]”。日志文件在 <code>~/.bash_history</code>,也可以更改，仅供参考。</p>
+</blockquote>
+<blockquote>
+<p><code>sosreport</code>:用于收集系统配置及架构信息并输出诊断文档，格式为 “sosreport”。</p>
+</blockquote>
+<blockquote>
+<p><code>pwd</code>：显示用户当前所处的工作目录，格式为 “pwd [选项]”。</p>
+</blockquote>
+<blockquote>
+<p><code>cd</code>：用于切换工作路径，格式为 “cd [目录名称]”。</p>
+<blockquote>
+<p><code>cd -</code> 返回到上一次所在的目录<br><code>cd ~</code> 切换到当前用户的家目录<br><code>cd ..</code>切换到上级目录</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>ls</code>:用于显示目录中的文件信息，格式为 “ls [选项][文件]”。使用ls 命令的 <code>-a</code>参数看到全部文件（包括隐藏文件），使用 <code>-l</code> 参数可以查看文件的属性、大小等详细信息。故常用 <code>ls -al</code></p>
+</blockquote>
+<blockquote>
+<p><code>cat</code>：用于查看纯文本文件（内容较小的)，格式为 “cat [选项][文件]”。<br><code>more</code>:用于查看纯文本文件（内容较多的），格式为 “more [选项][文件]”</p>
+</blockquote>
+<blockquote>
+<p><code>head</code>:用于查看纯文本文档的前N行，格式为 “head [选项][文件]”。例如:<code>head -n 20 initial-setup-ks.cfg</code><br><code>tail</code>:用于查看纯文本文档的后N行或持续刷新的内容，格式为 “tail [选项][文件]”。查看后n行，操作与<code>head</code>类似；持续刷新文件内容，使用 <code>tail -f 文件名</code>。</p>
+</blockquote>
+<blockquote>
+<p><code>tr</code>:用于替换文本文件中的字符，格式为 “tr [原始字符][目标字符]”</p>
+</blockquote>
+<blockquote>
+<p><code>wc</code>：用于统计指定文本的行数、字数、字节数，格式为 “wc [参数][文本]”。wc 的参数以及相应的作用如下：</p>
+<blockquote>
+<p><code>-l</code> 只显示行数 lines<br><code>-w</code> 只显示单词数 words<br><code>-c</code> 只显示字节数 bytes</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>stat</code>：用于查看文件的具体存储信息和时间等信息，格式为 “stat 文件名称”。有三种时间状态，Access，Modify，Change。atime 和 mtime 可利用 <code>touch</code>修改，ctime 无法修改。</p>
+<blockquote>
+<p>Access:最后一次访问文件内容的时间<br>Modify:最后一次修改文件内容的时间<br>Change:最后一次修改文件属性或权限信息的时间。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>cut</code>：用于按”列”提取文本字符，格式为 “cut [参数] 文本”。</p>
+</blockquote>
+<blockquote>
+<p><code>diff</code>:用于比较多个文本文件的差异，格式为 “diff [参数] 文件”。在使用 <code>diff</code>命令时，不仅可以使用 <code>--brief</code>（短格式为<code>-q</code>） 参数来确认两个文件是否不同，还可以使用 <code>-c</code>参数来详细比较出多个文件的差异之处，可用来判断文件是否被篡改。</p>
+</blockquote>
+<blockquote>
+<p><code>touch</code>:用于创建空白文件或设置文件的时间，格式为 “touch [选项][文件]”<br>  <code>touch</code> 命令的参数及其作用：</p>
+<blockquote>
+<p><code>-a</code> 仅修改”读取时间”（atime,access）<br><code>-m</code> 仅修改”修改时间”（mtime，modify）<br><code>-d</code> 同时修改 atime 和 mtime</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>mkdir</code>: 用于创建空白的目录，格式为 “mkdir [选项][目录]”，还可以结合 <code>-p</code>(parents)参数来递归创建出具有嵌套叠层关系的文件目录。</p>
+</blockquote>
+<blockquote>
+<p><code>cp</code>：用于复制文件或目录，格式为 “cp [选项] 源文件 目标文件”。cp命令的参数及作用如下：</p>
+<blockquote>
+<p><code>-p</code>  保留原始文件的属性<br><code>-d</code>  若对象为”链接文件”，则保留该”链接文件”的属性<br><code>-r</code>  递归持续复制（用于目录）<br><code>-i</code>  若目录文件存在则询问是否覆盖<br><code>-a</code>  相当于 <code>-pdr</code> （p、d、r 为上述参数）</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><code>mv</code>：用于剪切文件或者文件重命名，格式为 “mv [选项] 源文件 [目标路径 | 目标文件名]”。</p>
+</blockquote>
+<blockquote>
+<p><code>rm</code>: 用于删除文件或目录，格式为 “rm [选项] 文件”，加 <code>-f</code>(force)参数来强制删除，删除目录则要加 <code>-r</code> 参数。</p>
+</blockquote>
+<blockquote>
+<p><code>dd</code>：用于按照指定大小和个数的数据块来复制文件或转换文件，格式为 “dd [参数]”。dd 命令只能从前面取，无法从后面取。dd 命令的参数及作用:</p>
+<ul>
+<li>if    输入的文件名称 input file</li>
+<li>of    输出的文件名称 output file</li>
+<li>bs    设置每个”块”的大小</li>
+<li>count 设置要复制”块”的个数</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><code>file</code>:用于查看文件的类型，格式为 “file 文件名”</p>
+</blockquote>
+<blockquote>
+<p>任务</p>
+<ul>
+<li>复习：<a href="https://www.linuxprobe.com/chapter-02.html" target="_blank" rel="noopener">第二章：新手必须掌握的Linux命令</a></li>
+<li>预习：9.13:<a href="https://www.linuxprobe.com/chapter-03.html" target="_blank" rel="noopener">第3章 管道符、重定向与环境变量</a></li>
+<li>预习：9.14:<a href="https://www.linuxprobe.com/chapter-04.html" target="_blank" rel="noopener">第4章 Vim编辑器与Shell命令脚本</a></li>
+<li>预习：9.15:<a href="https://www.linuxprobe.com/chapter-05.html" target="_blank" rel="noopener">第5章 用户身份与文件权限</a></li>
+</ul>
+</blockquote>
+<p>最后附上几张笔记：<br><img src="/img/9.8-1.jpg" alt="9.8笔记" title="9.8笔记"><br><img src="/img/9.8-2.jpg" alt="9.8笔记" title="9.8笔记"><br><img src="/img/9.8-3.jpg" alt="9.8笔记" title="9.8笔记"><br><img src="/img/9.8-4.jpg" alt="9.8笔记" title="9.8笔记"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/09/09/linux就该这么学-第三节课/">linux就该这么学-第三节课</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">王孟俊</a></p>
+        <p><span>发布时间:</span>2019-09-09, 19:50:19</p>
+        <p><span>最后更新:</span>2019-09-09, 23:43:51</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/09/linux就该这么学-第三节课/" title="linux就该这么学-第三节课">http://wangmj.cn/2019/09/09/linux就该这么学-第三节课/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://wangmj.cn/2019/09/09/linux就该这么学-第三节课/　　作者: 王孟俊" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/09/14/linux就该这么学-第四节课/">
+                    linux就该这么学-第四节课
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/09/09/linux就该这么学-第二节课/">
+                    linux就该这么学-第二节课
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"linux就该这么学-第三节课　| 王孟俊　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://wangmj.cn/2019/09/09/linux就该这么学-第三节课/';
+            this.page.identifier = '2019/09/09/linux就该这么学-第三节课/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//http-github-wangmj-cn.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
+
+</section>
+
+
+    // Add comment count
+    <script id="dsq-count-scr" src="//http-github-wangmj-cn.disqus.com/count.js" async></script>
+    <span class="disqus-comment-count" data-disqus-identifier="2019/09/09/linux就该这么学-第三节课/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://wangmj.cn/2019/09/09/linux就该这么学-第三节课/"></span>
+    <script>
+        $(".disqus-comment-count").hide();
+        var $disqusCount = $(".disqus-comment-count");
+        $disqusCount.bind("DOMNodeInserted", function(e) {
+            $(".count-comment").text(
+                $(this).text().replace(/[^0-9]/ig,"")
+            )
+            DISQUSWIDGETS.getCount({reset: true});
+        })
+    </script>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/09/14/linux就该这么学-第四节课/" title="上一篇: linux就该这么学-第四节课">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/09/09/linux就该这么学-第二节课/" title="下一篇: linux就该这么学-第二节课">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/04/06/tdsql 安装部署/">tdsql 最小化安装部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/26/娱乐至死/">《娱乐至死》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/07/centos7.4网站搭建/">centos7.4网站搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/07/交换机自动保存配置上传到服务器指定文件夹/">交换机自动保存配置上传到服务器指定文件夹</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/02/愿你的生活既有善良，又有锋芒/">《愿你的生活既有善良，又有锋芒》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/《linux就该这么学》宣传篇/">《linux就该这么学》宣传篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/11/linux就该这么学-第十六节课/">linux就该这么学-第十六节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/linux就该这么学-第十五节课/">linux就该这么学-第十五节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/linux就该这么学-第十四节课/">linux就该这么学-第十四节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/linux就该这么学-第十三节课/">linux就该这么学-第十三节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/30/linux就该这么学-第十二节课/">linux就该这么学-第十二节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/linux就该这么学-第十一节课/">linux就该这么学-第十一节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/28/linux就该这么学-第十节课/">linux就该这么学-第十节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/22/linux就该这么学-第九节课/">linux就该这么学-第九节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/linux就该这么学-第八节课/">linux就该这么学-第八节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/21/linux就该这么学-第七节课/">linux就该这么学-第七节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/linux就该这么学-第六节课/">linux就该这么学-第六节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/linux就该这么学-第五节课/">linux就该这么学-第五节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/14/linux就该这么学-第四节课/">linux就该这么学-第四节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/linux就该这么学-第三节课/">linux就该这么学-第三节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/09/linux就该这么学-第二节课/">linux就该这么学-第二节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/07/linux就该这么学-第一节课/">linux就该这么学-第一节课</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/06/断舍离  ---山下英子/">《断舍离》读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/02/初识Markdown/">初识markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/30/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019-2021 王孟俊
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":350},"mobile":{"show":true}});</script></body>
+</html>
